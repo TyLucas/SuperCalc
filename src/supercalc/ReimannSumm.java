@@ -12,8 +12,13 @@ import java.util.Scanner;
  * @author andreas lees
  */
 public class ReimannSumm {
+    public static final Scanner scnr = new Scanner(System.in);
 
-    
+    public static String getNextLine() {
+        String nextLine = scnr.nextLine();
+        return nextLine;
+        
+    }
     public static double myFunct(double n) {
          double ans;
          //outputs radians
@@ -94,7 +99,6 @@ public class ReimannSumm {
     }
     
     public static void main(String[] args) {
-         Scanner scnr = new Scanner(System.in);
          
          
          
