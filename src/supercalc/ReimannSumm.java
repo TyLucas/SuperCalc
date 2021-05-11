@@ -5,20 +5,12 @@
  */
 package supercalc;
 
-import java.util.Scanner;
 
 /**
  *
  * @author andreas lees
  */
 public class ReimannSumm {
-    public static final Scanner scnr = new Scanner(System.in);
-
-    public static String getNextLine() {
-        String nextLine = scnr.nextLine();
-        return nextLine;
-        
-    }
     public static double myFunct(double n) {
          double ans;
          //outputs radians
@@ -109,11 +101,11 @@ public class ReimannSumm {
          double upperBound;
          int rectangleCount;
          System.out.println("Insert Lower Bound: ");
-         lowerBound = scnr.nextDouble();
+         lowerBound = SuperCalc.getNextDouble();
          System.out.println("Insert Upper Bound: ");
-         upperBound = scnr.nextDouble();
+         upperBound = SuperCalc.getNextDouble();
          System.out.println("Insert Number of Rectangles: ");
-         rectangleCount = scnr.nextInt();
+         rectangleCount = SuperCalc.getNextInt();
          System.out.println("Left " + leftSum(lowerBound, upperBound, rectangleCount));
          System.out.println("Right " + rightSum(lowerBound, upperBound, rectangleCount));
          System.out.println("Trapezoid " + trapezoidSum(lowerBound, upperBound, rectangleCount));
