@@ -30,6 +30,7 @@ public class SuperCalc {
         
     }
     public static void printMenu() {
+      MathExpression expr = new MathExpression();
       Boolean quitMenu = false;
       printMenuOptions();
       String usrInput = ReimannSumm.getNextLine();
@@ -38,7 +39,8 @@ public class SuperCalc {
         switch (usrInput){
             case "a":
                 System.out.println("Input algebra equation");
-                MathExpression expr = new MathExpression(ReimannSumm.getNextLine());
+                //MathExpression expr = new MathExpression(ReimannSumm.getNextLine());
+                expr.setExpression(ReimannSumm.getNextLine());
                 System.out.println("result: " + expr.solve());
                 usrInput = ReimannSumm.getNextLine();
                 break;
@@ -49,7 +51,10 @@ public class SuperCalc {
                 usrInput = ReimannSumm.getNextLine();
                 break;
             case "d":
-                usrInput = ReimannSumm.getNextLine();
+                System.out.println("Input equation you want to derive, with x as variable");
+                usrInput = "diff(@(x)" + ReimannSumm.getNextLine() + ")";
+                expr.setExpression(usrInput);
+                System.out.println("result: " + expr.solve());
                 break;
             case "q":
                 quitMenu = true;
