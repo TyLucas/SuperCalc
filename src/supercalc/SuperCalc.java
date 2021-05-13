@@ -40,7 +40,6 @@ public class SuperCalc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         printMenu();
     }
     public static void printMenuOptions() {
@@ -60,6 +59,7 @@ public class SuperCalc {
       String usrInput = SuperCalc.getNextLine();
       
       while (!quitMenu) {
+          //TODO add check to make sure expression is correct format
         switch (usrInput){
             case "a":
                 System.out.println("Input algebra equation");
@@ -71,8 +71,9 @@ public class SuperCalc {
             case "i":
                 //example "f(x)=2*x; intg(f,1,3)"
                 System.out.println("Input equation you want to integrate, with x as variable followed by lower and upper bound");
-                System.out.println("ex: 2*x 1 3");
-                usrInput = "f(x)=" + SuperCalc.getNext() + "; intg(f," + SuperCalc.getNextDouble() + "," + SuperCalc.getNextDouble() + ")";
+                System.out.println("ex: 2*x,1,3");
+                //usrInput = "f(x)=" + SuperCalc.getNext() + "; intg(f," + SuperCalc.getNextDouble() + "," + SuperCalc.getNextDouble() + ")";
+                usrInput = "intg(@(x)" + SuperCalc.getNextLine() + ")";
                 expr.setExpression(usrInput);
                 System.out.println("result: " + expr.solve());
                 usrInput = SuperCalc.getNextLine();
@@ -82,6 +83,9 @@ public class SuperCalc {
                 break;
             case "d":
                 System.out.println("Input equation you want to derive, with x as variable");
+                System.out.println("You can input just the equation or provide a lower/upper bound");
+                System.out.println("ex: x^3");
+                System.out.println("ex: x^3,1,3");
                 usrInput = "diff(@(x)" + SuperCalc.getNextLine() + ")";
                 expr.setExpression(usrInput);
                 System.out.println("result: " + expr.solve());
