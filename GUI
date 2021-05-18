@@ -1,0 +1,65 @@
+package supercalc;
+import java.util.Scanner;
+import util.*;
+import parser.*;
+import math.numericalmethods.Integration;
+import math.numericalmethods.NumericalIntegral;
+import util.help.Topic;
+/**
+ *
+ * @author Ty Lucas
+ */
+public class SuperCalcGUI extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        //Button 1
+        Button ElementaryMath = new Button();
+        ElementaryMath.setText("Elementary Math");
+        ElementaryMath.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+        //Button 2
+        Button Derivatives = new Button();
+        Derivatives.setText("Derivatives");
+        ElementaryMath.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                Scanner scnr = new Scanner (System.in);
+                String usrInput;
+                System.out.println("Input equation you want to derive, with x as variable");
+                System.out.println("You can input just the equation or provide a lower/upper bound");
+                System.out.println("ex: x^3");
+                System.out.println("ex: x^3,1,3");
+                usrInput = "diff(@(x)" + scnr.nextLine() + ")";
+                expr.setExpression(usrInput);
+                System.out.println("result: " + expr.solve());
+                usrInput = scnr.nextLine();
+            }
+        });
+        //Button 3
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(ElementaryMath);
+        root.getChildren().add(Derivatives);
+        
+        Scene scene = new Scene(root, 300, 250);
+        
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
+}
