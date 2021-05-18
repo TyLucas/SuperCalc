@@ -7,6 +7,9 @@ package supercalc;
 import java.util.Scanner;
 import util.*;
 import parser.*;
+import math.numericalmethods.Integration;
+import math.numericalmethods.NumericalIntegral;
+import util.help.Topic;
 /**
  *
  * @author andreas lees
@@ -60,12 +63,19 @@ public class SuperCalc {
       
       while (!quitMenu) {
           //TODO add check to make sure expression is correct format
+          /*examples
+          quad(@(x)x^2+x-12)    quadratic, must be in terms of zero
+          intg(@(x)2*x,1,3)     integration using definite integral
+          diff(@(x)x^3,1,3)     derivative within given bounds
+          diff(@(x)2*x)         derivative of function
+          
+          */
         switch (usrInput){
             case "a":
                 System.out.println("Input algebra equation");
-                //MathExpression expr = new MathExpression(ReimannSumm.getNextLine());
-                expr.setExpression(SuperCalc.getNextLine());
-                System.out.println("result: " + expr.solve());
+                System.out.println("examples:\n\t|(1+3)/2\n\t|x;x=3+4*(8-7) ");
+                MathExpression algebra = new MathExpression(SuperCalc.getNextLine());
+                System.out.println("result: " + algebra.solve());
                 usrInput = SuperCalc.getNextLine();
                 break;
             case "i":
@@ -79,7 +89,27 @@ public class SuperCalc {
                 usrInput = SuperCalc.getNextLine();
                 break;
             case "rs":
+                String func;
+                int iterations;
+                double lowerBound;
+                double upperBound;
+                System.out.println("Input equation you want to use, with x as variable followed by lower bound, upper bound, and number of iterations");
+                System.out.println("ex: 2*x,1,3,4");
+                //usrInput = "f(x)=" + SuperCalc.getNext() + "; intg(f," + SuperCalc.getNextDouble() + "," + SuperCalc.getNextDouble() + ")";
+                //usrInput = "@(x)" + SuperCalc.getNextLine();
+                func = "@(x)" + SuperCalc.getNext();
+                System.out.println(func);
+                lowerBound = SuperCalc.getNextDouble();
+                System.out.println(lowerBound);
+                upperBound = SuperCalc.getNextDouble();
+                System.out.println(upperBound);
+                iterations = SuperCalc.getNextInt();
+                System.out.println(iterations);
+                NumericalIntegral integ = new NumericalIntegral(lowerBound, upperBound, iterations, func);
+                System.out.println("Simpson: "  + integ.findSimpsonIntegral());
+                System.out.println("Trapezoid: "  + integ.findTrapezoidalIntegral());
                 usrInput = SuperCalc.getNextLine();
+                System.out.println(expr.getExpression());
                 break;
             case "d":
                 System.out.println("Input equation you want to derive, with x as variable");

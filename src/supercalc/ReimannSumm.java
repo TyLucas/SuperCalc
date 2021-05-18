@@ -5,6 +5,9 @@
  */
 package supercalc;
 
+import util.*;
+import parser.*;
+
 
 /**
  *
@@ -12,6 +15,7 @@ package supercalc;
  */
 public class ReimannSumm {
     public static double myFunct(double n) {
+      //MathExpression expr = new MathExpression(SuperCalc.getNextLine());
          double ans;
          //outputs radians
          //ans = (Math.cos(n) / n);
